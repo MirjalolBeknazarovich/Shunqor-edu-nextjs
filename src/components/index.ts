@@ -1,0 +1,8 @@
+export { default as Heading } from './heading/heading';
+export { default as Text } from './text/text';
+export { default as Tag } from './tag/tag';
+export { default as Button } from './button/button';
+export { default as Inpput } from './input/input'
+export { default as TextArea } from './text-area/text-area'
+export { default as Rating } from './rating/rating';
+export { default as Card } from './card/card';

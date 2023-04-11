@@ -1,4 +1,4 @@
-import { AppContext, AppContextProvider } from "@/context/app.context"
+import { AppContext } from "@/context/app.context"
 import { firstLevelMenu } from "@/helpers/constants";
 import Link from "next/link";
 import { useContext } from "react";
@@ -46,7 +46,7 @@ const Menu = (): JSX.Element => {
     return (
       <div className={styles.secondBlock}>
         {menu.map(q => {
-          if(q.pages.map(p => p._id).includes(router.asPath.split("/")[2])){
+          if(q.pages.map(p => p._id).includes(router.asPath.split('/')[2])){
             q.isOpened = true;
           }
 
@@ -68,8 +68,8 @@ const Menu = (): JSX.Element => {
 
   const buildThirdLevel = (pages: PageItem[], route: string) => {
     return pages.map(p => (
-      <Link key={p._id} href={`/${route}/${p.alias}`} className={cn(styles.thirdLevel, {
-        [styles.thirdLevelActive]: `/${route}/${p.alias}` === router.asPath,
+      <Link key={p._id} href={`/${route}/${p._id}`} className={cn(styles.thirdLevel, {
+        [styles.thirdLevelActive]: `/${route}/${p._id}` === router.asPath,
       })}>{p.title}</Link>
     ))
   };

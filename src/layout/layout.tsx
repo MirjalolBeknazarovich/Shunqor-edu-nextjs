@@ -22,11 +22,11 @@ export const withLayout = <T extends Record<string, unknown> & IAppContext>(Comp
         // console.log(props);
 
         return (
-            <Layout>
-                <AppContextProvider menu={props.menu} firstCategory={props.firstCategory}>
+            <AppContextProvider menu={props.menu} firstCategory={props.firstCategory}>
+                <Layout>
                     <Component {...props} />                    
-                </AppContextProvider>
-            </Layout>
+                </Layout>
+            </AppContextProvider>
         )
     }
 }

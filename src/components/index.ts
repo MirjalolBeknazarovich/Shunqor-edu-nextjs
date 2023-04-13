@@ -7,4 +7,5 @@ export { default as TextArea } from './text-area/text-area'
 export { default as Rating } from './rating/rating';
 export { default as Card } from './card/card';
 export { default as Divider } from './divider/divider';
-export { default as Hhdata } from './hh-data/hh-data'
+export { default as Hhdata } from './hh-data/hh-data';
+export { default as Advantages } from './advantages/advantages'

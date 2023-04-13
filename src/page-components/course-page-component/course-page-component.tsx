@@ -1,7 +1,7 @@
 import { CoursePageComponentProps } from "./course-page-component.props";
 import styles from './course-page-component.module.css'
 import cs from 'classnames';
-import { Heading, Hhdata, Tag } from "@/components";
+import { Advantages, Heading, Hhdata, Tag, Text } from "@/components";
 
 const CoursePageComponent = ({firstCategory, page, products}: CoursePageComponentProps): JSX.Element => {
   return (
@@ -21,6 +21,23 @@ const CoursePageComponent = ({firstCategory, page, products}: CoursePageComponen
 
         {/* HHData */}
         {page.hh && <Hhdata {...page.hh} />}
+
+        {/* ADVANTAGES */}
+        {page.advantages && page.advantages.length && (
+          <>
+            <Heading tag="h2">Advantages</Heading>
+            <Advantages advantages={page.advantages} />
+          </>
+        )}
+
+        {/* DESCRIPTION */}
+        <Text>{page.description}</Text>
+
+        {/* SKILLS */}
+        <Heading tag="h2">Skills</Heading>
+        {page.tags.length && page.tags.map(t => (
+          <Tag color="primary" key={t}>{t}</Tag>
+        ))}
     </div>
   )
 }

@@ -14,7 +14,7 @@ export interface ProductModel {
     tags: string[]
     characteristics: Characteristic[]
     initialRating: number
-    reviews: Review[]
+    reviews: ReviewModel[]
     reviewCount: number
   }
   
@@ -23,12 +23,12 @@ export interface ProductModel {
     value: string
   }
   
-  export interface Review {
-    _id: string
-    name: string
-    title: string
-    description: string
-    rating: number
-    productId: string
+  export interface ReviewModel {
+    _id: string;
+    name: string;
+    title: string;
+    description: string;
+    rating: number;
+    productId: string;
   }
   

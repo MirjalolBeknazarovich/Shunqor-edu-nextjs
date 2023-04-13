@@ -3,10 +3,10 @@ import cn from "classnames";
 import styles from './divider.module.css'
 
 
-const Ddivider = ({className, ...props}: DividerProps):JSX.Element => {
+const Divider = ({className, ...props}: DividerProps):JSX.Element => {
   return (
     <hr className={cn(className, styles.divider)} {...props} />
   )
 }
 
-export default Ddivider
+export default Divider

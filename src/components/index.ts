@@ -8,4 +8,6 @@ export { default as Rating } from './rating/rating';
 export { default as Card } from './card/card';
 export { default as Divider } from './divider/divider';
 export { default as Hhdata } from './hh-data/hh-data';
-export { default as Advantages } from './advantages/advantages'
+export { default as Advantages } from './advantages/advantages';
+export { default as Product } from './product/product';
+export { default as ReviewForm } from './review-form/review-form'

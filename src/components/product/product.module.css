@@ -63,7 +63,7 @@
     align-self: flex-end;
 }
 
-.hr, .description, .actions {
+.hr, .hr2, .description, .actions {
     grid-column: start / end;
 }
 

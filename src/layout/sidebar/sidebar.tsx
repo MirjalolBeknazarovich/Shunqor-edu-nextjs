@@ -4,7 +4,7 @@ import cn from "classnames";
 import styles from "./sidebar.module.css"
 import Link from "next/link";
 import Logo from "../../.././public/logo .svg"
-import { Divider } from "@/components";
+import { Divider, Search } from "@/components";
 
 const Sidebar = ({className, ...props}: SidebarProps):JSX.Element => {
   return (
@@ -13,7 +13,7 @@ const Sidebar = ({className, ...props}: SidebarProps):JSX.Element => {
         <div className={styles.divLogo}><Logo className={styles.logo} /><span>SHUNQOR EDU</span></div>
         <Divider />
       </Link>
-      <div>search.... </div>
+      <Search />
       <Menu />
     </div>
   )

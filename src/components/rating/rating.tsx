@@ -1,9 +1,12 @@
 import { RatingProps } from './rating.props';
 import styles from './rating.module.css';
 import cn from 'classnames'
-import { useEffect, useState } from 'react';
+import { ForwardedRef, forwardRef, useEffect, useState } from 'react';
 import StarIcon from './star.svg'
-const Rating = ({rating, isEditabled = false, setRating, ...props}: RatingProps): JSX.Element => {
+import { spawn } from 'child_process';
+
+
+const Rating = forwardRef(({rating, error, isEditabled = false, setRating, ...props}: RatingProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>))
 
     useEffect(() => {
@@ -40,12 +43,15 @@ const Rating = ({rating, isEditabled = false, setRating, ...props}: RatingProps)
         setRating(index)
     }
   return (
-    <div className={styles.rating} {...props}>
+    <div className={cn(styles.rating, {
+        [styles.error]: error,
+    })} ref={ref} {...props}>
         { ratingArray.map((rating, index) => (
             <span key={index}>{rating}</span>
         ))}
+        {error && <span className={styles.errorMessage}>{error.message}</span>}
     </div>
   )
-}
+})
 
 export default Rating

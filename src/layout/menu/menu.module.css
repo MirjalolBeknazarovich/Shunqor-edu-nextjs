@@ -19,13 +19,13 @@
     fill: var(--primary);
 }
 
-.secondLevelBlock {
+/* .secondLevelBlock {
     display: none;
 }
 
 .secondLevelBlockActive {
     display: block;
-}
+} */
 
 .secondBlock{
     margin-top: 15px;

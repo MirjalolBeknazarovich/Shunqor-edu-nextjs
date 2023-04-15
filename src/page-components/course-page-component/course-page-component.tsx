@@ -1,9 +1,10 @@
 import { CoursePageComponentProps } from "./course-page-component.props";
 import styles from './course-page-component.module.css';
 import { Advantages, Heading, Hhdata, Product, Sort, Tag, Text } from "@/components";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { sortReducer } from "./sort.reducer";
 import { SortEnum } from "@/components/sort/sort.props";
+import { AnimatePresence } from 'framer-motion';
 
 const CoursePageComponent = ({ page, products }: CoursePageComponentProps): JSX.Element => {
   
@@ -11,6 +12,22 @@ const CoursePageComponent = ({ page, products }: CoursePageComponentProps): JSX.
 
   const setSort = (sort: SortEnum) => {
     dispatch({type: sort})
+  }
+
+  useEffect(() => {
+    dispatch({type: 'reset', initialState: products})
+  }, [products])
+
+  const spring = {
+    type: "spring",
+    stiffness: 500,
+    damping: 10,
+  }
+
+  const animations = {
+    initial: { scale: 0 },
+    animate: { scale: 1 },
+    exit: { scale: 1 }
   }
   
 
@@ -22,7 +39,7 @@ const CoursePageComponent = ({ page, products }: CoursePageComponentProps): JSX.
             <Sort sort={state.sort} setSort={setSort} />
         </div>
         {/* Products */}
-        <div>{state.products && state.products.map((c, index) => <Product key={index} product={c} />)}</div>
+        <AnimatePresence>{state.products && state.products.map((c, index) => <Product key={index} layout {...animations} transition={spring} product={c} />)}</AnimatePresence>
         {/* Vactions */}
         <div className={styles.hhTitle}>
           <Heading tag='h2'>Vactions - {page.category}</Heading>

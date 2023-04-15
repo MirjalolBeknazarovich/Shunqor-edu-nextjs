@@ -2,7 +2,7 @@ import { SortEnum } from "@/components/sort/sort.props";
 import { ProductModel } from "@/interface/propdutc.interface";
 
 
-export type SortActions = {type: SortEnum.Price} | {type: SortEnum.Rating}
+export type SortActions = {type: SortEnum.Price} | {type: SortEnum.Rating} | {type: 'reset', initialState: ProductModel[]}
 
 export interface SortReducerState {
     sort: SortEnum;
@@ -22,6 +22,11 @@ export const sortReducer = ( state: SortReducerState, action: SortActions ) => {
                 sort: SortEnum.Price,
                 products: state.products.sort((a, b) => a.price > b.price ? 1 : -1)
             };
+        case 'reset':
+            return {
+                sort: SortEnum.Rating,
+                products: action.initialState
+            }
         default:
             throw new Error("Something went wrong")
     }

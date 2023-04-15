@@ -3,12 +3,12 @@ import styles from './product.module.css';
 import cn from "classnames";
 import Card from "../card/card";
 import Image from "next/image";
-import { convertToUSD } from "@/helpers/helpers";
+import { convertToUSD, dedectedReview } from "@/helpers/helpers";
 import Tag from "../tag/tag";
 import Rating from "../rating/rating";
 import Divider from "../divider/divider";
 import Button from "../button/button";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Review from "../review/review";
 import ReviewForm from "../review-form/review-form";
 
@@ -16,6 +16,12 @@ import ReviewForm from "../review-form/review-form";
 const Product = ({product, className, ...props}:ProductProps): JSX.Element => {
 
     const [ reviewOpen, setReviewOpen ] = useState<boolean>(false)
+
+    const reviewRef = useRef<HTMLDivElement>(null)
+    const scrollToReview = () => {
+        setReviewOpen(true)
+        reviewRef.current?.scrollIntoView({behavior: 'smooth', block: 'start'})
+    }
 
   return (
     <div className={className} {...props}>
@@ -44,7 +50,7 @@ const Product = ({product, className, ...props}:ProductProps): JSX.Element => {
             <div className={styles.priceTitle}>Price</div>
             <div className={styles.creditTitle}>Credit</div>
             <div className={styles.rateTitle}>
-                {product.reviewCount} reviews
+                <a href="#review" onClick={scrollToReview}> {product.reviewCount} {dedectedReview(product.reviewCount)}</a>                
             </div>
 
             <Divider className={styles.hr} />
@@ -85,7 +91,7 @@ const Product = ({product, className, ...props}:ProductProps): JSX.Element => {
             </div>
 
         </Card>
-        <Card color='white' className={cn(styles.review, {
+        <Card color='white' ref={reviewRef} className={cn(styles.review, {
             [styles.opened]: reviewOpen,
             [styles.closed]: !reviewOpen,
         })}>

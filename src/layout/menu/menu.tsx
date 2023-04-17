@@ -24,7 +24,7 @@ const Menu = (): JSX.Element => {
       marginBottom: 0,
     },
   }
-  
+
   const variantsChildren = {
     visible: {
       opacity: 1,
@@ -104,9 +104,3 @@ const Menu = (): JSX.Element => {
 }
 
 export default Menu
-
-
-
-// {
-//   [styles.secondLevelBlockActive]: q.isOpened,
-// }

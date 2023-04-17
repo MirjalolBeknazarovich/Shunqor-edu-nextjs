@@ -5,17 +5,36 @@ import Input from "../input/input";
 import Rating from "../rating/rating";
 import { Button, TextArea } from "..";
 import { Controller, useForm } from "react-hook-form";
-import { IReviewForm } from "./review-form.interface";
+import { IReviewForm, IReviewResponse } from "./review-form.interface";
+import { useState } from 'react'
+import axios from "axios";
+import Error from "./error";
+import Success from "./success";
 
 const ReviewForm = ({ productid, className, ...props }: ReviewFormProps): JSX.Element => {
 
-  const { register, handleSubmit, control, formState: { errors } } = useForm<IReviewForm>()
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+	const [error, setError] = useState<boolean>(false);
+
+  const { register, handleSubmit, reset, control, formState: { errors } } = useForm<IReviewForm>();
 
 
-  const onSubmit = (data: IReviewForm) => {
-    console.log(data);
-       
-  }
+  const onSubmit = async (formData: IReviewForm) => {
+		setError(false);
+		setIsSuccess(false);
+		try {
+			const { status } = await axios.post<IReviewResponse>(`${process.env.NEXT_PUBLIC_API}/posts`, {
+				...formData,
+				productId: productid,
+			});
+			if (status === 200) {        
+				setIsSuccess(true);
+				reset();
+			}
+		} catch {
+			setError(true);
+		}
+	};
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -33,6 +52,10 @@ const ReviewForm = ({ productid, className, ...props }: ReviewFormProps): JSX.El
           <span className={styles.info}>* Your review will be moderated and reviewed before being published.</span>
         </div>
       </div>
+
+      {isSuccess && <Success setIsSuccess={setIsSuccess} />}
+
+			{error && <Error setError={setError} />}
     </form>
   )
 }

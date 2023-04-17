@@ -3,7 +3,7 @@ import { SidebarProps } from "./sidebar.props";
 import cn from "classnames";
 import styles from "./sidebar.module.css"
 import Link from "next/link";
-import Logo from "../../.././public/logo .svg"
+import Logo from "../../.././public/logo.svg"
 import { Divider, Search } from "@/components";
 
 const Sidebar = ({className, ...props}: SidebarProps):JSX.Element => {

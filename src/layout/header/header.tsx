@@ -6,6 +6,7 @@ import { IconButton } from "@/components";
 import { useState } from "react";
 import Sidebar from "../sidebar/sidebar";
 import { motion } from 'framer-motion'
+import Link from "next/link";
 
 const Header = ({className, ...props}: HeaderProps): JSX.Element => {
 
@@ -29,7 +30,8 @@ const Header = ({className, ...props}: HeaderProps): JSX.Element => {
 
   return (
     <div className={cn(className, styles.header)} {...props}>
-      <div className={styles.divLogo}><LogoIcon className={styles.logo} /><span>SHUNQOR EDU</span></div>      
+      <Link href={'/'}>
+        <div className={styles.divLogo}><LogoIcon className={styles.logo} /><span>SHUNQOR EDU</span></div></Link>      
       <IconButton icon="menu" appearance="white" onClick={toggleMenu} />
       <motion.div variants={variants} initial={"closed"} animate={isOpen ? "opened" : "closed"} className={styles.mobilMenu}>
         <Sidebar />

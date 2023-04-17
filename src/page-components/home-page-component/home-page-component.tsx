@@ -6,6 +6,7 @@ import { company, timeLineList } from '@/helpers/constants';
 import { Fragment } from 'react';
 import Footer from '@/layout/footer/footer';
 import { Timeline, TimelineEvent } from 'react-event-timeline';
+import ScrollUp from '@/components/scroll-up/scroll-up';
 
 const HomePageComponent = () => {
     return (
@@ -62,6 +63,7 @@ const HomePageComponent = () => {
 					))}
 				</div>
 			</div>
+            <ScrollUp />
             <Footer />
         </div>
     )

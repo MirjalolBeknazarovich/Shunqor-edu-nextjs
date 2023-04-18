@@ -1,12 +1,15 @@
 import { MenuItem } from "@/interface/menu.interface";
 import { withLayout } from "@/layout/layout";
+import Seo from "@/layout/seo/seo";
 import { HomePageComponent } from "@/page-components";
 import axios from "axios";
 import { GetServerSideProps } from "next";
 
 const Index = () => {
   return (
-    <HomePageComponent />
+    <Seo>
+      <HomePageComponent />
+    </Seo>
   )
 }
 

@@ -4,27 +4,54 @@ import cn from 'classnames'
 import Input from "../input/input";
 import Button from "../button/button";
 import SearchIcon from './icon/search.svg'
-import { useState } from "react";
+import { ChangeEvent, useContext, useState } from 'react';
 import { useRouter } from "next/router";
+import { AppContext } from "@/context/app.context";
+import { PageItem } from "@/interface/menu.interface";
 
 const Search = ({ className, ...props }: SearchProps): JSX.Element => {
 
-    const [search, setSearch] = useState("")
+  const { menu } = useContext(AppContext)  
 
-    const router = useRouter()
+  const [search, setSearch] = useState('');
+	const [response, setResponse] = useState<PageItem[]>([]);
 
-    const searchHandler = () => {
-        if (!search.length) return;
-        router.push({pathname: '/search', query: {q: search}})
+  const router = useRouter();
+
+  const searchHandler = (id: string) => {
+    router.push(`/${router.query?.type || 'courses'}/${id}`);
+		setResponse([]);
+		setSearch('');
+  }
+
+  const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const allPages = menu.map(menu => menu.pages).flat();
+    const { value } = e.target
+    setSearch(value);
+    const response = allPages.filter(c => c.title.toLowerCase().indexOf(value.toLowerCase()) !== -1);
+    setResponse(response)
+    if (value.length == 0) {
+      setResponse([])
     }
+    
+  }
 
   return (
     <div className={cn(className, styles.search)} {...props} >
-        <Input placeholder="Search..." className={styles.input} value={search} onChange={e => setSearch(e.target.value)} />
-        <Button appearence="primary" className={styles.button} onClick={searchHandler} >
-            <SearchIcon />
-        </Button>
-    </div>    
+      <Input placeholder="Search..." className={styles.input} value={search} onChange={changeHandler} />
+      <Button appearence="primary" className={styles.button}>
+        <SearchIcon />
+      </Button>
+      {response.length ? (
+				<div className={styles.searchResponse}>
+					{response.map(c => (
+						<div onClick={() => searchHandler(c._id)} key={c._id}>
+							{c.title}
+						</div>
+					))}
+				</div>
+			) : null}
+    </div>
   )
 }
 

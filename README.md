@@ -12,22 +12,40 @@ https://643ee609ef30a321b6078b1e-ootngleors.chromatic.com/?path=/story/component
 Education platform to collected all popular courses and books. You can find the best courses to fit you with your dream
 
 # Stack
+
 TypeScript
+
 NextJS
+
 ReactJS
+
 Context
+
 NodeJS
+
 ExpressJS
+
 Storybook
+
 Framer motion
+
 Full responsive (mobile, tablet)
+
 SEO
+
 NProgress
+
 API
+
 Module CSS
+
 Classnames
+
 Reducers
+
 Project architecture
+
 UI Components
+
 High Order Component
 

@@ -13,39 +13,21 @@ Education platform to collected all popular courses and books. You can find the 
 
 # Stack
 
-TypeScript
-
-NextJS
-
-ReactJS
-
-Context
-
-NodeJS
-
-ExpressJS
-
-Storybook
-
-Framer motion
-
-Full responsive (mobile, tablet)
-
-SEO
-
-NProgress
-
-API
-
-Module CSS
-
-Classnames
-
-Reducers
-
-Project architecture
-
-UI Components
-
-High Order Component
-
+-TypeScript
+-NextJS
+-ReactJS
+-Context
+-NodeJS
+-ExpressJS
+-Storybook
+-Framer motion
+-Full responsive (mobile, tablet)
+-SEO
+-NProgress
+-API
+-Module CSS
+-Classnames
+-Reducers
+-Project architecture
+-UI Components
+-High Order Component
